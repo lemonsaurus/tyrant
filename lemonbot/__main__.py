@@ -19,6 +19,8 @@ bot = Bot(
 # Load the extensions we want
 bot.load_extension("lemonbot.cogs.lemon_spam")
 bot.load_extension("lemonbot.cogs.lemon_image")
+bot.load_extension("lemonbot.cogs.lemon_name_force")
+bot.load_extension("lemonbot.cogs.role_assignment")
 
 # Validate the token
 token = constants.Bot.token

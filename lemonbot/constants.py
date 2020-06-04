@@ -13,3 +13,7 @@ class Channels:
     lemon_spam: int = 718180500568801352
 
 
+class Roles:
+    """Roles relevant to this bot."""
+    average_lemon: int = 718181055902908516
+    lemon_allies: int = 718216622929739926
