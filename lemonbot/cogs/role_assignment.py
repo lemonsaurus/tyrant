@@ -35,8 +35,11 @@ class RoleAssignment(Cog):
     @Cog.listener()
     async def on_member_update(self, _: Member, after: Member) -> None:
         """Assign roles to all deroled users according to name."""
-        if self.average_lemon_role not in after.roles and self.lemon_allies_role not in after.roles:
-            await self.assign_roles(after)
+        for role in after.roles:
+            if role.id == constants.Roles.average_lemon or role.id == constants.Roles.lemon_allies:
+                return
+
+        await self.assign_roles(after)
 
 
 def setup(bot: Bot) -> None:
