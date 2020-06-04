@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  lemonbot:
+    image: heavysaturn/lemonbot:latest
+    container_name: lemon-server-bot
+    command: pipenv run bot
+    restart: always
+    environment:
+      - LEMON_DISCORD_TOKEN=NzE4MTgxMjA5NjgyNzM5MjQ3.XtlJ2A.RBefAgiwr77HJOZPcxQ8RpbvvvQ

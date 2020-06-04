@@ -1,2 +1,5 @@
 # lemonbot
-A bot for a dumbass lemon server
+
+Bot for a dumbass lemon-themed server
+
+🍋 🍋 
