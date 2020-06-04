@@ -18,15 +18,25 @@ class RoleAssignment(Cog):
         self.average_lemon_role = discord.Object(constants.Roles.average_lemon)
         self.lemon_allies_role = discord.Object(constants.Roles.lemon_allies)
 
-    @Cog.listener()
-    async def on_member_join(self, member: Member) -> None:
-        """Force nickname for all new users to be 'lemon'"""
-        if member.display_name != "lemon":
-            log.info(f"{member.display_name} is joining. They are not a lemon, assigning lemon allies role.")
+    async def assign_roles(self, member) -> None:
+        """Assigning roles according to display_name"""
+        if member.name != "lemon":
+            log.info(f"{member.name} is joining. They are not a lemon, assigning lemon allies role.")
             await member.add_roles(self.lemon_allies_role)
         else:
-            log.info(f"{member.display_name} is joining. They are a lemon, assigning average lemon.")
+            log.info(f"{member.name} is joining. They are a lemon, assigning average lemon.")
             await member.add_roles(self.average_lemon_role)
+
+    @Cog.listener()
+    async def on_member_join(self, member: Member) -> None:
+        """Assign roles to all joining users according to name."""
+        await self.assign_roles(member)
+
+    @Cog.listener()
+    async def on_member_update(self, _: Member, after: Member) -> None:
+        """Assign roles to all deroled users according to name."""
+        if self.average_lemon_role not in after.roles and self.lemon_allies_role not in after.roles:
+            await self.assign_roles(after)
 
 
 def setup(bot: Bot) -> None:
