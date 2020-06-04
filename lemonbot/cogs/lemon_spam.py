@@ -1,5 +1,6 @@
 import logging
 
+from discord import Message
 from discord.ext import tasks
 from discord.ext.commands import Bot, Cog
 
@@ -18,6 +19,11 @@ class Lemonspam(Cog):
     @Cog.listener()
     async def on_ready(self):
         self.spam_lemon.start()
+
+    @Cog.listener()
+    async def on_message(self, msg: Message):
+        if msg.channel.id == constants.Channels.lemon_spam and not msg.author.bot:
+            await msg.channel.send(f"lemon")
 
     @tasks.loop(minutes=1)
     async def spam_lemon(self) -> None:
