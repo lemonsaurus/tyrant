@@ -17,10 +17,10 @@ jobs:
       - name: Publish to DockerHub
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: heavysaturn/lemonsaur.us
+          name: heavysaturn/lemonbot:latest
           username: ${{ secrets.dockerhub_username }}
           password: ${{ secrets.dockerhub_password }}
-          dockerfile: docker/lemonsaurus.Dockerfile
+          dockerfile: docker/lemonbot.Dockerfile
 
       # Deploy via Hoplite
       - name: Send a webhook to Hoplite
