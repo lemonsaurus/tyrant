@@ -1,39 +1,11 @@
 import random
 
-_LEMON_NOUNS = [
-    "lemonade",
-    "limon",
-    "citron",
-    "citrus",
-    "sourfruit",
-    "lime",
-    "melon",
-    "kiwi",
-    "fruit",
-    "yellowfruit",
-    "lemonfish"
-]
-
-_LEMON_VERBS = [
-    "demonic",
-    "pleasant",
-    "citrusy",
-    "sour",
-    "yellow",
-    "round",
-    "aromatic",
-    "juicy",
-    "acidic",
-    "fresh",
-    "sweet",
-    "bitter",
-    "pale",
-    "plain",
-]
+from lemonbot.constants import LEMON_NOUNS, LEMON_VERBS
 
 
 def generate_lemon_name():
+    """Generate a random lemony name."""
     if random.random() >= 0.80:
-        return f"{' '.join(random.choices(_LEMON_VERBS, k=2))} {random.choice(_LEMON_NOUNS)}"
+        return f"{' '.join(random.choices(LEMON_VERBS, k=2))} {random.choice(LEMON_NOUNS)}"
     else:
-        return f"{random.choice(_LEMON_VERBS)} {random.choice(_LEMON_NOUNS)}"
+        return f"{random.choice(LEMON_VERBS)} {random.choice(LEMON_NOUNS)}"
