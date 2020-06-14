@@ -12,6 +12,8 @@ from lemonbot.decorators import with_role
 
 log = logging.getLogger(__name__)
 
+MAX_PURGE = 50
+
 
 class Purge(Cog):
     """
@@ -69,11 +71,11 @@ class Purge(Cog):
                 return bool(re.search(regex.lower(), content.lower()))
 
         # Is this an acceptable amount of messages to clean?
-        if amount > 20:
+        if amount > MAX_PURGE:
             embed = Embed(
                 color=Colour(0xcd6d6d),
                 title=random.choice(NEGATIVE_REPLIES),
-                description=f"You cannot clean more than 20 messages at a time."
+                description=f"You cannot clean more than {MAX_PURGE} messages at a time."
             )
             await ctx.send(embed=embed)
             return

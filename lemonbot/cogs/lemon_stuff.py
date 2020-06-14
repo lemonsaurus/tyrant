@@ -24,7 +24,7 @@ class LemonStuff(Cog):
         random_lemon = File(next(FILE_CYCLE))
         await ctx.send(file=random_lemon)
 
-    @commands.command()
+    @commands.command(aliases=("lemonfact", "facts"))
     async def fact(self, ctx: Context):
         """Post a random fact about lemons."""
         random_fact = random.choice(constants.LEMON_FACTS)
