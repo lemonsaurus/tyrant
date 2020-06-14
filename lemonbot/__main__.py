@@ -17,9 +17,9 @@ bot = Bot(
 )
 
 # Load the extensions we want
-bot.load_extension("lemonbot.cogs.lemon_spam")
-bot.load_extension("lemonbot.cogs.lemon_image")
+bot.load_extension("lemonbot.cogs.lemon_stuff")
 bot.load_extension("lemonbot.cogs.lemon_name_force")
+bot.load_extension("lemonbot.cogs.minecraft")
 bot.load_extension("lemonbot.cogs.role_assignment")
 
 # Validate the token
@@ -29,5 +29,5 @@ if token is None:
     raise MissingToken("No token found in the LEMON_DISCORD_TOKEN environment variable!")
 
 # Start the bot
-log.info(f"== Lemonbot operational ==")
+log.info(f"🍋🍋 Lemonbot operational 🍋🍋")
 bot.run(token)

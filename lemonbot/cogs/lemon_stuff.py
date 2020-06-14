@@ -1,16 +1,18 @@
 import logging
+import random
 
 from discord import File
 from discord.ext import commands
 from discord.ext.commands import Bot, Cog, Context
 
+from lemonbot import constants
 from lemonbot.assets import FILE_CYCLE
 
 log = logging.getLogger(__name__)
 
 
-class LemonImage(Cog):
-    """Post random lemon images."""
+class LemonStuff(Cog):
+    """Post random lemon-related stuff."""
 
     def __init__(self, bot: Bot):
         """Initialize this cog with the Bot instance."""
@@ -22,6 +24,12 @@ class LemonImage(Cog):
         random_lemon = File(next(FILE_CYCLE))
         await ctx.send(file=random_lemon)
 
+    @commands.command()
+    async def fact(self, ctx: Context):
+        """Post a random fact about lemons."""
+        random_fact = random.choice(constants.LEMON_FACTS)
+        await ctx.send(random_fact)
+
 
 def setup(bot: Bot) -> None:
     """
@@ -29,5 +37,5 @@ def setup(bot: Bot) -> None:
 
     It's only purpose is to load the cog above, and to pass the Bot instance into it.
     """
-    bot.add_cog(LemonImage(bot))
-    log.info("Cog loaded: LemonImage")
+    bot.add_cog(LemonStuff(bot))
+    log.info("Cog loaded: LemonStuff")
