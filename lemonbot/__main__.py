@@ -21,6 +21,7 @@ bot.load_extension("lemonbot.cogs.lemon_stuff")
 bot.load_extension("lemonbot.cogs.lemon_name_force")
 bot.load_extension("lemonbot.cogs.minecraft")
 bot.load_extension("lemonbot.cogs.role_assignment")
+bot.load_extension("lemonbot.cogs.purge")
 
 # Validate the token
 token = constants.Bot.token

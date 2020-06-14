@@ -1,6 +1,59 @@
 import os
 from typing import Optional
 
+NEGATIVE_REPLIES = [
+    "Noooooo!!",
+    "Nope.",
+    "I'm sorry Dave, I'm afraid I can't do that.",
+    "I don't think so.",
+    "Not gonna happen.",
+    "Out of the question.",
+    "Huh? No.",
+    "Nah.",
+    "Naw.",
+    "Not likely.",
+    "No way, José.",
+    "Not in a million years.",
+    "Fat chance.",
+    "Certainly not.",
+    "NEGATORY.",
+    "Nuh-uh.",
+    "Not in my house!",
+]
+
+POSITIVE_REPLIES = [
+    "Yep.",
+    "Absolutely!",
+    "Can do!",
+    "Affirmative!",
+    "Yeah okay.",
+    "Sure.",
+    "Sure thing!",
+    "You're the boss!",
+    "Okay.",
+    "No problem.",
+    "I got you.",
+    "Alright.",
+    "You got it!",
+    "ROGER THAT",
+    "Of course!",
+    "Aye aye, cap'n!",
+    "I'll allow it.",
+]
+
+ERROR_REPLIES = [
+    "Please don't do that.",
+    "You have to stop.",
+    "Do you mind?",
+    "In the future, don't do that.",
+    "That was a mistake.",
+    "You blew it.",
+    "You're bad at computers.",
+    "Are you trying to kill me?",
+    "Noooooo!!",
+    "I can't believe you've done this",
+]
+
 LEMON_NOUNS = [
     "lemonade",
     "limon",
@@ -87,6 +140,7 @@ class Channels:
 
 class Roles:
     """Roles relevant to this bot."""
+    og_lemon: int = 718178484496760840
     average_lemon: int = 718181055902908516
     lemon_allies: int = 718216622929739926
 
