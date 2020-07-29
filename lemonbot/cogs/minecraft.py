@@ -44,7 +44,7 @@ class Minecraft(Cog):
         )
         embed.add_field(
             name="Version",
-            value="1.15.2",
+            value="1.16",
         )
         embed.add_field(
             name="Plugins",
