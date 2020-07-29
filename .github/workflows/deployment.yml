@@ -13,6 +13,10 @@ jobs:
       # Check out master branch
       - uses: actions/checkout@master
 
+      # Install git
+      - name: Install git
+        run: sudo apt install git
+
       # Build and publish the docker image
       - name: Publish to DockerHub
         uses: elgohr/Publish-Docker-Github-Action@master
