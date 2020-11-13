@@ -7,4 +7,4 @@ services:
     command: pipenv run bot
     restart: always
     environment:
-      - LEMON_DISCORD_TOKEN=NzE4MTgxMjA5NjgyNzM5MjQ3.XtlIXw.1tHey6XjhsP7w-10T6S0brlOuXA
+      - LEMON_DISCORD_TOKEN=<supersecrettokenyouguise>
