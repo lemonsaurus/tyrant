@@ -118,7 +118,6 @@ LEMON_FACTS = [
     "In February and March, Menton in the French Riviera celebrates an annual lemon festival.",
     "Lemon oil is used in unsealed rosewood fingerboards of stringed instruments.",
     "The lemon shark is named for its yellowish skin.",
-    "Lemons are high in vitamin C.",
     "Lemons can prevent scurvy.",
     "To power a flashlight bulb, you need 500 wired lemons to conduct electricity.",
     "The heaviest lemon was 11 pounds, 9.7 ounces in 2003.",
@@ -128,23 +127,19 @@ LEMON_FACTS = [
 
 class Bot:
     """Constants relating to the bot itself."""
-    token: Optional[str] = os.environ.get("LEMON_DISCORD_TOKEN")
-    prefix: str = "!"
+    token: Optional[str] = os.environ.get("LEMONSAURUS_DISCORD_TOKEN")
+    prefix: str = "."
 
 
 class Channels:
     """Channel IDs that are relevant for this community."""
-    mc_rules: int = 721496293024989265
-    mc_chat: int = 721396164489904189
 
 
 class Roles:
     """Roles relevant to this bot."""
-    og_lemon: int = 718178484496760840
-    average_lemon: int = 718181055902908516
-    lemon_allies: int = 718216622929739926
+    lemon: int = 575977761739374592
 
 
 class Users:
     """Users relevant to this bot."""
-    owner_lemon: int = 353290053377589258
+    lemonsaurus: int = 95872159741644800

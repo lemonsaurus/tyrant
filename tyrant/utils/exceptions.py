@@ -1,6 +1,3 @@
-"""Very exceptions."""
-
-
 class Error(Exception):
     pass
 

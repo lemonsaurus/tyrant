@@ -7,8 +7,8 @@ from discord import Colour, Embed, Message, TextChannel, User
 from discord.ext import commands
 from discord.ext.commands import Bot, Cog, Context, group
 
-from lemonbot.constants import NEGATIVE_REPLIES, Roles
-from lemonbot.decorators import with_role
+from tyrant.constants import NEGATIVE_REPLIES, Roles
+from tyrant.decorators import with_role
 
 log = logging.getLogger(__name__)
 
@@ -97,13 +97,13 @@ class Purge(Cog):
         await ctx.channel.purge(limit=amount, check=predicate)
 
     @group(invoke_without_command=True, name="clean", aliases=["purge"])
-    @with_role(Roles.og_lemon)
+    @with_role(Roles.lemon)
     async def clean_group(self, ctx: Context) -> None:
         """Commands for cleaning messages in channels."""
         await ctx.send_help(ctx.command)
 
     @clean_group.command(name="user", aliases=["users"])
-    @with_role(Roles.og_lemon)
+    @with_role(Roles.lemon)
     async def clean_user(
         self,
         ctx: Context,
@@ -114,7 +114,7 @@ class Purge(Cog):
         await self._clean_messages(amount, ctx, user=user)
 
     @clean_group.command(name="all", aliases=["everything"])
-    @with_role(Roles.og_lemon)
+    @with_role(Roles.lemon)
     async def clean_all(
         self,
         ctx: Context,
@@ -124,7 +124,7 @@ class Purge(Cog):
         await self._clean_messages(amount, ctx)
 
     @clean_group.command(name="bots", aliases=["bot"])
-    @with_role(Roles.og_lemon)
+    @with_role(Roles.lemon)
     async def clean_bots(
         self,
         ctx: Context,
@@ -135,7 +135,7 @@ class Purge(Cog):
         await self._clean_messages(amount, ctx, bots_only=True)
 
     @clean_group.command(name="regex", aliases=["word", "expression"])
-    @with_role(Roles.og_lemon)
+    @with_role(Roles.lemon)
     async def clean_regex(
         self,
         ctx: Context,

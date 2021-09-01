@@ -2,9 +2,9 @@ version: '3.7'
 
 services:
   lemonbot:
-    image: heavysaturn/lemonbot:latest
-    container_name: lemon-server-bot
+    image: lemonsaurus/tyrant:latest
+    container_name: tyrant
     command: pipenv run bot
     restart: always
     environment:
-      - LEMON_DISCORD_TOKEN=<supersecrettokenyouguise>
+      - LEMONSAURUS_DISCORD_TOKEN=<supersecrettokenyouguise>

@@ -5,8 +5,8 @@ from discord import File
 from discord.ext import commands
 from discord.ext.commands import Bot, Cog, Context
 
-from lemonbot import constants
-from lemonbot.assets import FILE_CYCLE
+from tyrant import constants
+from tyrant.assets import FILE_CYCLE
 
 log = logging.getLogger(__name__)
 
@@ -17,12 +17,6 @@ class LemonStuff(Cog):
     def __init__(self, bot: Bot):
         """Initialize this cog with the Bot instance."""
         self.bot = bot
-
-    @commands.command()
-    async def lemon(self, ctx: Context):
-        """Post a random image of a lemon."""
-        random_lemon = File(next(FILE_CYCLE))
-        await ctx.send(file=random_lemon)
 
     @commands.command(aliases=("lemonfact", "facts"))
     async def fact(self, ctx: Context):

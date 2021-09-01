@@ -3,8 +3,8 @@ import logging
 import discord
 from discord.ext.commands import Bot, when_mentioned_or
 
-from lemonbot import constants
-from lemonbot.utils.exceptions import MissingToken
+from tyrant import constants
+from tyrant.utils.exceptions import MissingToken
 
 log = logging.getLogger(__name__)
 
@@ -17,18 +17,16 @@ bot = Bot(
 )
 
 # Load the extensions we want
-bot.load_extension("lemonbot.cogs.lemon_stuff")
-bot.load_extension("lemonbot.cogs.lemon_name_force")
-bot.load_extension("lemonbot.cogs.minecraft")
-bot.load_extension("lemonbot.cogs.role_assignment")
-bot.load_extension("lemonbot.cogs.purge")
+bot.load_extension("tyrant.cogs.lemon_stuff")
+bot.load_extension("tyrant.cogs.role_assignment")
+bot.load_extension("tyrant.cogs.purge")
 
 # Validate the token
 token = constants.Bot.token
 
 if token is None:
-    raise MissingToken("No token found in the LEMON_DISCORD_TOKEN environment variable!")
+    raise MissingToken("No token found in the LEMONSAURUS_DISCORD_TOKEN environment variable!")
 
 # Start the bot
-log.info(f"🍋🍋 Lemonbot operational 🍋🍋")
+log.info(f"🍋🍋 Tyrant operational 🍋🍋")
 bot.run(token)

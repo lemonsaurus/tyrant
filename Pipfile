@@ -6,12 +6,12 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-discord-py = {git = "https://github.com/Rapptz/discord.py.git",ref = "0bc15fa130b8f01fe2d67446a2184d474b0d0ba7"}
+discord-py = {url = "https://github.com/Rapptz/discord.py/archive/master.zip"}
 
 [requires]
-python_version = "3.8"
+python_version = "3.9"
 
 [scripts]
-bot = "python -m lemonbot"
-build = "docker build -t heavysaturn/lemonbot:latest -f docker/lemonbot.Dockerfile ."
-push = "docker push heavysaturn/lemonbot:latest"
+bot = "python -m tyrant"
+build = "docker build -t lemonsaurus/tyrant:latest -f docker/tyrant.Dockerfile ."
+push = "docker push lemonsaurus/tyrant:latest"
