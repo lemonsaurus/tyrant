@@ -1,0 +1,31 @@
+name: Hoplite deployment
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Check out master branch
+      - uses: actions/checkout@master
+
+      # Build and publish the docker image
+      - name: Publish to DockerHub
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: lemonsaurus/tyrant
+          username: ${{ secrets.dockerhub_username }}
+          password: ${{ secrets.dockerhub_password }}
+          dockerfile: docker/tyrant.Dockerfile
+
+      # Deploy via Hoplite
+      - name: Send a webhook to Hoplite
+        uses: distributhor/workflow-webhook@v1.0.2
+        env:
+          webhook_auth: ${{ secrets.webhook_auth }}
+          webhook_secret: ${{ secrets.webhook_secret }}
+          webhook_url: ${{ secrets.webhook_url }}
+          data: '{"service": "tyrant"}'
