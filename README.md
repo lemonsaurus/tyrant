@@ -1,5 +1,7 @@
-# lemonbot
+# tyrant
 
-Bot for a dumbass lemon-themed server, since retired.
+A bot that keeps the peace and hands out fruit on the Lemonsaurus Discord server.
 
-🍋 🍋 
+🍋 https://discord.gg/hc5pDWNNzx 🍋
+
+
