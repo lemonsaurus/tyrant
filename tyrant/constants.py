@@ -94,7 +94,6 @@ LEMON_FACTS = [
     "Lemon zest, grated rinds, is often used in baking.",
     "Lemon tree leaves can be used to make tea.",
     "The high acidity of lemons make them good cleaning aids.",
-    "California and Arizona produces most of the United States’ lemon crop.",
     "The most common types of lemons are the Meyer, Eureka, and Lisbon lemons.",
     "The name is said to have derived from an Asian word for “sour fruit”.",
     "Lemons are technically berries.",
