@@ -18,6 +18,7 @@ bot = Bot(
 
 # Load the extensions we want
 bot.load_extension("tyrant.cogs.lemon_facts")
+bot.load_extension("tyrant.cogs.fruit_vs_vegetables")
 bot.load_extension("tyrant.cogs.purge")
 
 # Validate the token
