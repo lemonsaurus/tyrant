@@ -176,6 +176,11 @@ class Channels:
     """Channel IDs that are relevant for this community."""
     fruit_vs_vegetables: int = 883747003597738005
 
+class Messages:
+    """Message IDs that are important."""
+    fruit_role_assignment: int = 883854743636705280
+    veg_role_assignment: int = 883854721411088405
+
 
 class Roles:
     """Roles relevant to this bot."""
