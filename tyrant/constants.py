@@ -89,7 +89,6 @@ LEMON_FACTS = [
     "Lemons are native to Asia.",
     "Lemons are a hybrid between a sour orange and a citron.",
     "Lemons are rich in vitamin C.",
-    "Lemons trees can produce up to 600lbs of lemons every year.",
     "Lemon trees produce fruit all year round.",
     "Lemon zest, grated rinds, is often used in baking.",
     "Lemon tree leaves can be used to make tea.",
