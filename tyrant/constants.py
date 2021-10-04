@@ -120,6 +120,11 @@ LEMON_FACTS = [
     "To power a flashlight bulb, you need 500 wired lemons to conduct electricity.",
     "The heaviest lemon was 11 pounds, 9.7 ounces in 2003.",
     "Lemon was a common unisex name in the 1900’s.",
+    "Lemons are nature's best insect repellent.",
+    "The name 'lemon' may have originated from the Middle East.",
+    "In Morocco, they salt and preserve lemons in jars for later use in various dishes.",
+    "Lemons change color from green to yellow because of temperature changes.",
+    "A bowl of fresh lemons makes for an easy, effortless air freshener.",
 ]
 
 ALL_FRUIT_AND_VEG_ROLES = [
