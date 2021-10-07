@@ -6,5 +6,5 @@ services:
     container_name: tyrant
     command: pipenv run bot
     restart: always
-    environment:
-      - LEMONSAURUS_DISCORD_TOKEN=${LEMONSAURUS_DISCORD_TOKEN}
+    env_file:
+      - .env

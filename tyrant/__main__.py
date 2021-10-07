@@ -1,19 +1,20 @@
 import logging
 
 import discord
-from discord.ext.commands import Bot, when_mentioned_or
+from discord.ext.commands import when_mentioned_or
 
-from tyrant import constants
+from tyrant import bot, constants
 from tyrant.utils.exceptions import MissingToken
 
 log = logging.getLogger(__name__)
 
 # Initialize the bot
-bot = Bot(
+bot = bot.Tyrant(
     command_prefix=when_mentioned_or(constants.Bot.prefix),  # Invoked commands must have this prefix
     activity=discord.Game(name="with fire"),
     case_insensitive=True,
     max_messages=10_000,
+    allowed_mentions=discord.AllowedMentions(everyone=False),
 )
 
 # Load the extensions we want
@@ -28,5 +29,5 @@ if token is None:
     raise MissingToken("No token found in the LEMONSAURUS_DISCORD_TOKEN environment variable!")
 
 # Start the bot
-log.info(f"🍋🍋 Tyrant operational 🍋🍋")
+log.info("🍋🍋 Tyrant operational 🍋🍋")
 bot.run(token)

@@ -104,4 +104,3 @@ def setup(bot: Bot) -> None:
     It's only purpose is to load the cog above, and to pass the Bot instance into it.
     """
     bot.add_cog(FruitVsVegetables(bot))
-    log.info("Cog loaded: Fruit vs Vegetables")
