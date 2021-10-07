@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  lemonbot:
+    build:
+      context: .
+      dockerfile: ./docker/tyrant.Dockerfile
+    container_name: tyrant
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - ./tyrant:/tyrant/tyrant:ro
+    environment:
+      - LEMONSAURUS_DISCORD_TOKEN=${LEMONSAURUS_DISCORD_TOKEN}
