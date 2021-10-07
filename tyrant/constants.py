@@ -174,6 +174,7 @@ class Bot:
     """Constants relating to the bot itself."""
     token: Optional[str] = os.environ.get("LEMONSAURUS_DISCORD_TOKEN")
     prefix: str = "."
+    debug: bool = os.environ.get("LEMONSAURUS_DEBUG", "false").lower() == "true"
 
 
 class Channels:
