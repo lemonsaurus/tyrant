@@ -7,6 +7,7 @@ from aiohttp import AsyncResolver, ClientSession, TCPConnector
 from discord.ext import commands
 
 from tyrant import constants
+from tyrant.utils import github
 
 log = logging.getLogger(__name__)
 
@@ -79,8 +80,12 @@ class Tyrant(commands.Bot):
         except discord.HTTPException as e:
             log.error(f"Failed to fetch webhook to send connection log: status {e.status}")
         else:
+            image_url = await github.get_random_connection_image(self.http_session)
+            embed = discord.Embed(colour=discord.Colour.dark_magenta(),)
+            embed.set_image(url=image_url)
+            embed.set_footer(text=f"Version: {constants.Bot.git_sha}")
             await webhook.send(
-                content=details,
+                embed=embed,
                 avatar_url=self.user.display_avatar.url,
                 username=self.name,
             )
