@@ -17,6 +17,15 @@ class Tyrant(commands.Bot):
         await self.check_channels()
         await self.send_log("Connected!")
 
+    def add_cog(self, cog: commands.Cog) -> None:
+        """
+        Delegate to super to register `cog`.
+
+        This only serves to make the info log, so that extensions don't have to.
+        """
+        super().add_cog(cog)
+        log.info(f"Cog loaded: {cog.qualified_name}")
+
     async def check_channels(self) -> None:
         """Verifies that all channel constants refer to channels which exist."""
         if constants.Bot.debug:

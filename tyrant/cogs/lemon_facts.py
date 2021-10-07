@@ -31,4 +31,3 @@ def setup(bot: Bot) -> None:
     It's only purpose is to load the cog above, and to pass the Bot instance into it.
     """
     bot.add_cog(LemonFacts(bot))
-    log.info("Cog loaded: LemonFacts")

@@ -149,4 +149,3 @@ class Purge(Cog):
 def setup(bot: Bot) -> None:
     """Load the Purge cog."""
     bot.add_cog(Purge(bot))
-    log.info("Cog loaded: Purge")
