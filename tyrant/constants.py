@@ -210,3 +210,8 @@ class Roles:
 class Users:
     """Users relevant to this bot."""
     lemonsaurus: int = 95872159741644800
+
+
+class Webhooks:
+    """Webhook IDs used by this bot."""
+    logs: int = os.environ.get("LEMONSAURUS_LOG_WEBHOOK")
