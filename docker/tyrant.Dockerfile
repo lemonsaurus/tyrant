@@ -16,6 +16,14 @@ WORKDIR /tyrant
 COPY Pipfile* ./
 RUN pipenv install
 
+# Define Git SHA build argument with a default value
+ARG git_sha="development"
+
+# Override default value with one from the build stage
+# This allows us to override the dev default value with
+# thje actual sha in CI.
+ENV GIT_SHA=$git_sha
+
 # Copy source code in last
 COPY . .
 

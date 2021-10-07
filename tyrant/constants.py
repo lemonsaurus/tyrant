@@ -175,11 +175,13 @@ class Bot:
     token: Optional[str] = os.environ.get("LEMONSAURUS_DISCORD_TOKEN")
     prefix: str = "."
     debug: bool = os.environ.get("LEMONSAURUS_DEBUG", "false").lower() == "true"
+    git_sha: str = os.environ.get("GIT_SHA")
 
 
 class Channels:
     """Channel IDs that are relevant for this community."""
     fruit_vs_vegetables: int = 883747003597738005
+
 
 class Messages:
     """Message IDs that are important."""
