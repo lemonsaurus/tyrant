@@ -1,4 +1,3 @@
-import logging
 import random
 import re
 from typing import Optional
@@ -9,8 +8,6 @@ from discord.ext.commands import Bot, Cog, Context, group
 
 from tyrant.constants import NEGATIVE_REPLIES, Roles
 from tyrant.decorators import with_role
-
-log = logging.getLogger(__name__)
 
 MAX_PURGE = 50
 

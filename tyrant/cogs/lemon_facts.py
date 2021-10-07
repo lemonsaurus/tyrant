@@ -1,13 +1,9 @@
-import logging
 import random
 
-from discord import File
 from discord.ext import commands
 from discord.ext.commands import Bot, Cog, Context
 
 from tyrant import constants
-
-log = logging.getLogger(__name__)
 
 
 class LemonFacts(Cog):
