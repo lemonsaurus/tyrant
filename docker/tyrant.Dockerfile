@@ -9,9 +9,14 @@ ENV PIP_NO_CACHE_DIR=false
 
 RUN pip install -U pipenv
 
-RUN mkdir -p /tyrant
-COPY . /tyrant
 WORKDIR /tyrant
+
+# Just copy in deps first, so Docker can cache the image upto here
+# If there are no dep changes between builds
+COPY Pipfile* ./
 RUN pipenv install
+
+# Copy source code in last
+COPY . .
 
 CMD ["pipenv", "run", "bot"]
