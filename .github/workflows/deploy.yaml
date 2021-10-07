@@ -9,17 +9,39 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Create a commit SHA-based tag for DockerHub
+      - name: Create SHA Container Tag
+        id: sha_tag
+        run: |
+          tag=$(cut -c 1-7 <<< $GITHUB_SHA)
+          echo "::set-output name=tag::$tag"
+
       # Check out master branch
       - uses: actions/checkout@master
 
-      # Build and publish the docker image
-      - name: Publish to DockerHub
-        uses: elgohr/Publish-Docker-Github-Action@master
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
         with:
-          name: lemonsaurus/tyrant
           username: ${{ secrets.dockerhub_username }}
           password: ${{ secrets.dockerhub_password }}
-          dockerfile: docker/tyrant.Dockerfile
+      
+      # Build and push the container to DockerHub
+      # The container will be tagged as "latest" and with the short SHA of the commit.
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          file: docker/tyrant.Dockerfile
+          push: true
+          cache-from: type=registry,ref=lemonsaurus/tyrant:latest
+          cache-to: type=inline
+          tags: |
+            lemonsaurus/tyrant:latest
+            lemonsaurus/tyrant:${{ steps.sha_tag.outputs.tag }}
+          build-args: |
+            git_sha=${{ steps.sha_tag.outputs.tag }}
 
       # Deploy via Hoplite
       - name: Send a webhook to Hoplite
