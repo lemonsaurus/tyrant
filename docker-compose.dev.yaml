@@ -10,5 +10,5 @@ services:
     tty: true
     volumes:
       - ./tyrant:/tyrant/tyrant:ro
-    environment:
-      - LEMONSAURUS_DISCORD_TOKEN=${LEMONSAURUS_DISCORD_TOKEN}
+    env_file:
+      - .env
