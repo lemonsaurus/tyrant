@@ -1,6 +1,7 @@
-__pycache__
-.venv
-docker-compose.yaml
-LICENSE
-README.md
-docker
+# Exclude everything
+*
+
+# Make exceptions for what's needed
+!tyrant
+!Pipfile*
+!LICENSE
