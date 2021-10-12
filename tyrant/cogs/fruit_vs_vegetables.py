@@ -13,6 +13,11 @@ class FruitVsVegetables(Cog):
         self.bot = bot
         self.locks = {}
 
+    async def assign_roles(self, member, *roles) -> None:
+        """Assign roles to a member and remove the old team roles."""
+        await member.remove_roles(*[role for role in member.roles if role.id in constants.ALL_FRUIT_AND_VEG_ROLES])
+        await member.add_roles(*roles)
+
     @Cog.listener()
     async def on_raw_reaction_add(self, payload):
         """Distribute fruit or vegetable role, when appropriate."""
@@ -36,13 +41,11 @@ class FruitVsVegetables(Cog):
 
                 # Get the role ID from the emoji
                 fruit_role_id = constants.EMOJI_TO_ROLE[emoji.name]
-                team_id = constants.EMOJI_TO_TEAM[emoji.name]
+                team_id = constants.ROLE_TO_TEAM[fruit_role_id]
                 fruit_role = guild.get_role(fruit_role_id)
                 team_role = guild.get_role(team_id)
 
-                # Get rid of old roles, assign the new ones
-                await member.remove_roles(*[role for role in member.roles if role.id in constants.ALL_FRUIT_AND_VEG_ROLES])
-                await member.add_roles(fruit_role, team_role)
+                await self.assign_roles(member, fruit_role, team_role)
 
                 # Finally, remove all other reactions than this one
                 fruit_message = await channel.fetch_message(constants.Messages.fruit_role_assignment)
@@ -79,7 +82,7 @@ class FruitVsVegetables(Cog):
 
                 # Get the role ID from the emoji
                 fruit_role_id = constants.EMOJI_TO_ROLE[emoji.name]
-                team_id = constants.EMOJI_TO_TEAM[emoji.name]
+                team_id = constants.ROLE_TO_TEAM[fruit_role_id]
                 team_role = guild.get_role(team_id)
 
                 # Remove all fruit and veg roles from the member
