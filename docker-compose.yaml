@@ -8,3 +8,5 @@ services:
     restart: always
     env_file:
       - .env
+    volumes:
+      - ./logs:/tyrant/logs

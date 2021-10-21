@@ -10,5 +10,6 @@ services:
     tty: true
     volumes:
       - ./tyrant:/tyrant/tyrant:ro
+      - ./logs:/tyrant/logs
     env_file:
       - .env
