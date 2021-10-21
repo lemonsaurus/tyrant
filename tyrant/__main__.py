@@ -1,12 +1,9 @@
-import logging
-
 import discord
 from discord.ext.commands import when_mentioned_or
+from loguru import logger
 
 from tyrant import bot, constants
 from tyrant.utils.exceptions import MissingToken
-
-log = logging.getLogger(__name__)
 
 # Initialize the bot
 bot = bot.Tyrant(
@@ -29,5 +26,5 @@ if token is None:
     raise MissingToken("No token found in the LEMONSAURUS_DISCORD_TOKEN environment variable!")
 
 # Start the bot
-log.info("🍋🍋 Tyrant operational 🍋🍋")
+logger.info("🍋🍋 Tyrant operational 🍋🍋")
 bot.run(token)

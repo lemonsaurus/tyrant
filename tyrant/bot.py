@@ -1,15 +1,13 @@
-import logging
 import socket
 from typing import Optional
 
 import discord
 from aiohttp import AsyncResolver, ClientSession, TCPConnector
 from discord.ext import commands
+from loguru import logger
 
 from tyrant import constants
 from tyrant.utils import github
-
-log = logging.getLogger(__name__)
 
 
 class Tyrant(commands.Bot):
@@ -58,12 +56,12 @@ class Tyrant(commands.Bot):
         This only serves to make the info log, so that extensions don't have to.
         """
         super().add_cog(cog)
-        log.info(f"Cog loaded: {cog.qualified_name}")
+        logger.info("Cog loaded: {}", cog.qualified_name)
 
     async def check_channels(self) -> None:
         """Verifies that all channel constants refer to channels which exist."""
         if constants.Bot.debug:
-            log.info("Skipping Channels Check.")
+            logger.info("Skipping Channels Check.")
             return
 
         all_channels_ids = {channel.id for channel in self.get_all_channels()}
@@ -71,14 +69,14 @@ class Tyrant(commands.Bot):
             if name.startswith("_"):
                 continue
             if channel_id not in all_channels_ids:
-                log.error(f'Channel "{name}" with ID {channel_id} missing')
+                logger.error('Channel "{}" with ID {} missing', name, channel_id)
 
     async def send_connection_log(self) -> None:
         """Send a message to the logs channel."""
         try:
             webhook = await self.fetch_webhook(constants.Webhooks.logs)
         except discord.HTTPException as e:
-            log.error(f"Failed to fetch webhook to send connection log: status {e.status}")
+            logger.error("Failed to fetch webhook to send connection log: status {}", e.status)
         else:
             image_url = await github.get_random_connection_image(self.http_session)
             embed = discord.Embed(colour=discord.Colour.dark_magenta(),)

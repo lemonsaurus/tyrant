@@ -1,15 +1,8 @@
 import asyncio
-import logging
-import random
 
-from discord import File
-from discord.ext import commands
-from discord.utils import get
-from discord.ext.commands import Bot, Cog, Context
+from discord.ext.commands import Bot, Cog
 
 from tyrant import constants
-
-log = logging.getLogger(__name__)
 
 
 class FruitVsVegetables(Cog):
@@ -70,7 +63,6 @@ class FruitVsVegetables(Cog):
                     if member in users:
                         await reaction.remove(member)
 
-
     @Cog.listener()
     async def on_raw_reaction_remove(self, payload):
         """Remove fruit and veg roles, when appropriate."""
@@ -88,7 +80,6 @@ class FruitVsVegetables(Cog):
                 # Get the role ID from the emoji
                 fruit_role_id = constants.EMOJI_TO_ROLE[emoji.name]
                 team_id = constants.EMOJI_TO_TEAM[emoji.name]
-                fruit_role = guild.get_role(fruit_role_id)
                 team_role = guild.get_role(team_id)
 
                 # Remove all fruit and veg roles from the member
