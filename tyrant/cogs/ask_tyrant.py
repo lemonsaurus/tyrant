@@ -5,7 +5,7 @@ from discord.ext.commands import Bot, Cog, Context
 
 from tyrant import constants
 
-# unsuitable responses to be removed from self.RESPONSES
+# Unsuitable responses we need to remove.
 UNSUITABLE_RESPONSES = [
     "I'm sorry Dave, I'm afraid I can't do that.",
     "Not gonna happen.",
@@ -29,7 +29,7 @@ class AskTyrant(Cog):
         self.positive_replies = list(constants.POSITIVE_REPLIES)
         self.uncertain_replies = list(constants.UNCERTAIN_REPLIES)
 
-        # filtering responses
+        # Filtering out unsuitable responses for use here.
         for response in UNSUITABLE_RESPONSES:
             if response in self.negative_replies:
                 self.negative_replies.remove(response)
