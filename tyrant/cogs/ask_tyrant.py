@@ -38,6 +38,16 @@ class AskTyrant(Cog):
             elif response in self.uncertain_replies:
                 self.uncertain_replies.remove(response)
 
+        self.positive_replies = tuple(self.positive_replies)
+        self.negative_replies = tuple(self.negative_replies)
+        self.uncertain_replies = tuple(self.uncertain_replies)
+
+        self.verb_lookup = {
+            self.positive_replies: constants.POSITIVE_VERBS,
+            self.negative_replies: constants.NEGATIVE_VERBS,
+            self.uncertain_replies: constants.UNCERTAIN_VERBS,
+        }
+
     @commands.command(aliases=("8b", "8ball", "pleasesir"))
     async def ask(self, ctx: Context, *, question: str = None):
         """Send random answers to generic yes or no questions."""
@@ -47,16 +57,12 @@ class AskTyrant(Cog):
             )
             return
 
-        random_response = random.choice(
-            self.positive_replies + self.negative_replies + self.uncertain_replies
+        reply_pool = random.choice(
+            (self.positive_replies, self.negative_replies, self.uncertain_replies)
         )
 
-        if random_response in self.positive_replies:
-            response_verb = random.choice(constants.POSITIVE_VERBS)
-        elif random_response in self.negative_replies:
-            response_verb = random.choice(constants.NEGATIVE_VERBS)
-        elif random_response in self.uncertain_replies:
-            response_verb = random.choice(constants.UNCERTAIN_VERBS)
+        response_verb = random.choice(self.verb_lookup[reply_pool])
+        random_response = random.choice(reply_pool)
 
         await ctx.send(f'**The Tyrant {response_verb},** "{random_response}"')
 
