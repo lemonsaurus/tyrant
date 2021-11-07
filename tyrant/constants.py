@@ -1,6 +1,10 @@
 import os
 from typing import Optional
 
+POSITIVE_VERBS = ["pronounces", "decrees", "proclaims", "ordains"]
+NEGATIVE_VERBS = ["commands", "orders", "demands", "dictates"]
+UNCERTAIN_VERBS = ["mumbles", "suggests", "mutters", "shrugs, and says"]
+
 NEGATIVE_REPLIES = [
     "Noooooo!!",
     "Nope.",
@@ -39,6 +43,23 @@ POSITIVE_REPLIES = [
     "Of course!",
     "Aye aye, cap'n!",
     "I'll allow it.",
+]
+
+UNCERTAIN_REPLIES = [
+    "I have no idea.",
+    "How would I know?",
+    "Ask me tomorrow.",
+    "Ask me when you're older.",
+    "Maybe?",
+    "It's hard to say for sure.",
+    "Who knows?",
+    "Nyesno.",
+    "Sure! Wait, maybe not.",
+    "You never know!",
+    "I know the answer, but I won't tell you.",
+    "Frudgeknuckle.",
+    "Rorchestershire.",
+    "Could go either way!",
 ]
 
 ERROR_REPLIES = [
