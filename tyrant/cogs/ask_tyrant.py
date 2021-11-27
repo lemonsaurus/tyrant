@@ -50,7 +50,7 @@ class AskTyrant(Cog):
 
     @commands.command(aliases=("8b", "8ball", "pleasesir"))
     async def ask(self, ctx: Context, *, question: str = None):
-        """Send random answers to generic yes or no questions."""
+        """Post random answers for YES or NO questions."""
         if question is None:
             await ctx.send(
                 f'**The Tyrant proclaims**, "You are bad at asking questions"'
