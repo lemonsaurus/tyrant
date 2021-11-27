@@ -197,6 +197,7 @@ class Bot:
     prefix: str = "."
     debug: bool = os.environ.get("LEMONSAURUS_DEBUG", "false").lower() == "true"
     git_sha: str = os.environ.get("GIT_SHA")
+    embed_color: int = 0xf6f65d
 
 
 class Channels:
