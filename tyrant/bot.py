@@ -4,10 +4,12 @@ from typing import Optional
 import discord
 from aiohttp import AsyncResolver, ClientSession, TCPConnector
 from discord.ext import commands
+from discord.ext.commands.context import Context
 from loguru import logger
 
 from tyrant import constants
 from tyrant.utils import github
+from tyrant.utils.embed import create_help_embed
 
 
 class Tyrant(commands.Bot):
@@ -20,6 +22,9 @@ class Tyrant(commands.Bot):
 
         self.http_session: Optional[ClientSession] = None
         self._connector: Optional[TCPConnector] = None
+
+        self.remove_command('help')
+        self.add_command(self.help)
 
     async def login(self, *args, **kwargs) -> None:
         """Re-create the connector and set up sessions before logging into Discord."""
@@ -87,3 +92,10 @@ class Tyrant(commands.Bot):
                 avatar_url=self.user.display_avatar.url,
                 username=self.name,
             )
+
+    @commands.command()
+    async def help(ctx: Context, cmd_name: str = None):
+        """Custom Help command for tyrant."""
+        embed = create_help_embed(ctx, cmd_name)
+
+        await ctx.send(embed=embed)
