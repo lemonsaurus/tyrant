@@ -17,7 +17,7 @@ def create_help_embed(ctx: Context, cmd_name: str = None):
             cog = ctx.bot.cogs[cog_name]
             field_value = ""
             for cmd in cog.walk_commands():
-                field_value += f"**{constants.Bot.prefix}{cmd.name}** [{'|'.join(list(cmd.aliases))}]\n"
+                field_value += f"**{constants.Bot.prefix}{cmd.name}** [{' | '.join(list(cmd.aliases))}]\n"
 
             if field_value != "":
                 help_embed.add_field(name=cog_name, value=field_value, inline=True)
@@ -34,7 +34,7 @@ def create_help_embed(ctx: Context, cmd_name: str = None):
         for cmd in cog.walk_commands():
             if cmd.name == cmd_name.strip().lower():
                 help_embed = Embed(
-                    title=f"{constants.Bot.prefix}{cmd.name} [{'|'.join(list(cmd.aliases))}]",
+                    title=f"{constants.Bot.prefix}{cmd.name} [{' | '.join(list(cmd.aliases))}]",
                     description=(
                         cmd.help if cmd.description == "" else cmd.description
                     ),
