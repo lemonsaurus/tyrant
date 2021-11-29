@@ -4,8 +4,7 @@ from typing import Optional
 import discord
 from aiohttp import AsyncResolver, ClientSession, TCPConnector
 from discord.ext import commands
-from discord.ext.commands.context import Context
-from discord.ext.commands.core import command
+
 from loguru import logger
 
 from tyrant import constants

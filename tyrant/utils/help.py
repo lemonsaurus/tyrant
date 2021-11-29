@@ -1,8 +1,6 @@
-from http import cookies
 from discord.ext.commands import Bot
-from discord.ext.commands import Context
 from discord.ext import commands
-from discord import Embed, errors
+from discord import Embed
 
 from tyrant import constants
 
