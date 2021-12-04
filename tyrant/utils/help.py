@@ -7,8 +7,8 @@ from tyrant import constants
 class TyrantHelp(commands.HelpCommand):
     """Help command for tyrant."""
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self):
+        super().__init__()
 
     async def send_bot_help(self, mapping):
         bot = self.context.bot
