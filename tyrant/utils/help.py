@@ -31,20 +31,14 @@ class TyrantHelp(commands.HelpCommand):
         await self.get_destination().send(embed=help_embed)
 
     async def send_command_help(self, command: commands.Command):
-        bot: Bot = self.context.bot
-
-        for cog_name in bot.cogs:
-            cog = bot.cogs[cog_name]
-            for cmd in cog.walk_commands():
-                if cmd.name == command.name.strip().lower():
-                    help_embed = Embed(
-                        title=f"{constants.Bot.prefix}{cmd.name} [{' | '.join(list(cmd.aliases))}]",
-                        description=(
-                            cmd.help if cmd.description == "" else cmd.description
-                        ),
-                        color=constants.Bot.embed_color,
-                    )
-                break
+        bot = self.context.bot
+        help_embed = Embed(
+            title=f"{constants.Bot.prefix}{command.name} [{' | '.join(list(command.aliases))}]",
+            description=(
+                command.help if command.description == "" else command.description
+            ),
+            color=constants.Bot.embed_color,
+        )
 
         await self.get_destination().send(embed=help_embed)
 
