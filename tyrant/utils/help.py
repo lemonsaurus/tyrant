@@ -11,8 +11,8 @@ class TyrantHelp(commands.HelpCommand):
         super().__init__(*args, **kwargs)
 
     async def send_bot_help(self, mapping):
-        bot: Bot = self.context.bot
-        help_embed: Embed = Embed(
+        bot = self.context.bot
+        help_embed = Embed(
             title="Help",
             description="Tyrant help list.",
             color=constants.Bot.embed_color,
