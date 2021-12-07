@@ -12,6 +12,7 @@ class TyrantHelp(commands.HelpCommand):
         super().__init__()
 
     async def send_bot_help(self, mapping):
+        """Tyrant's help menu command."""
         bot = self.context.bot
         help_embed = Embed(
             title="Help",
@@ -33,6 +34,7 @@ class TyrantHelp(commands.HelpCommand):
 
     async def send_command_help(self, command: commands.Command):
         bot = self.context.bot
+        """Post help for specified command."""
         help_embed = Embed(
             title=f"{constants.Bot.prefix}{command.name} [{' | '.join(list(command.aliases))}]",
             description=(
@@ -44,6 +46,7 @@ class TyrantHelp(commands.HelpCommand):
         await self.get_destination().send(embed=help_embed)
 
     async def send_error_message(self, error):
+        """Post error message when an error occurs."""
         help_embed: Embed = Embed(
             title="Oops!", description=error, color=constants.Color.yellow
         )
