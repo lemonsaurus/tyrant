@@ -33,7 +33,6 @@ class TyrantHelp(commands.HelpCommand):
         await self.get_destination().send(embed=help_embed)
 
     async def send_command_help(self, command: commands.Command):
-        bot = self.context.bot
         """Post help for specified command."""
         help_embed = Embed(
             title=f"{constants.Bot.prefix}{command.name} [{' | '.join(list(command.aliases))}]",
