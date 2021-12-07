@@ -15,7 +15,7 @@ class TyrantHelp(commands.HelpCommand):
         help_embed = Embed(
             title="Help",
             description="Tyrant help list.",
-            color=constants.Bot.embed_color,
+            color=constants.Color.yellow,
         )
 
         for cog_name in bot.cogs:
@@ -37,14 +37,14 @@ class TyrantHelp(commands.HelpCommand):
             description=(
                 command.help if command.description == "" else command.description
             ),
-            color=constants.Bot.embed_color,
+            color=constants.Color.yellow,
         )
 
         await self.get_destination().send(embed=help_embed)
 
     async def send_error_message(self, error):
         help_embed: Embed = Embed(
-            title="Oops!", description=error, color=constants.Bot.embed_color
+            title="Oops!", description=error, color=constants.Color.yellow
         )
 
         await self.get_destination().send(embed=help_embed)
