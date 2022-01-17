@@ -41,6 +41,26 @@ class TyrantHelp(commands.HelpCommand):
 
         await self.get_destination().send(embed=help_embed)
 
+    async def send_group_help(self, group:commands.Group):
+        """Post help for command groups."""
+        subcommands = group.commands
+        if len(subcommands) == 0:
+            await self.send_command_help(group)
+            return
+
+        commands_ = await self.filter_commands(subcommands, sort=True)
+        help_embed = Embed(
+            title=f"**{group.name}** Help",
+            color=constants.Color.yellow
+        )
+        message = ""
+
+        for command in commands_:
+            message += f"**{constants.Bot.prefix}{group.name} {command.name}** [{' | '.join(list(command.aliases))}]\n"
+
+        help_embed.description = message 
+        await self.get_destination().send(embed=help_embed)
+
     async def send_error_message(self, error):
         """Post error message when an error occurs."""
         help_embed: Embed = Embed(
