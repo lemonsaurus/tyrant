@@ -33,7 +33,7 @@ class TyrantHelp(commands.HelpCommand):
 
                     field_value += f"**{cmd.name.title()}** Group [{ '|'.join(list(cmd.aliases)) }]\n"
                     for sub_command in sub_commands_copy.values():
-                        field_value += f"***{constants.Bot.prefix}{cmd.name}*** **{sub_command.name}** [{' | '.join(list(sub_command.aliases))}]\n"
+                        field_value += f"**{constants.Bot.prefix}{cmd.name} {sub_command.name}** [{' | '.join(list(sub_command.aliases))}]\n"
                 else:
                     field_value += f"**{constants.Bot.prefix}{cmd.name}** [{' | '.join(list(cmd.aliases))}]\n"
 
