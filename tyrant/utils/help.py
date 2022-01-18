@@ -22,18 +22,9 @@ class TyrantHelp(commands.HelpCommand):
             field_value = ""
 
             for cmd in await self.filter_commands(cog.get_commands(), sort=True):
-                sub_commands = cmd.__dict__.get('all_commands') # unique property for group commands
-                if sub_commands is not None: # if it is a group
-                    sub_commands_copy = cmd.__dict__.get('all_commands').copy()
-
-                    for sub_command in sub_commands.values(): # removing aliases from command list
-                        for alias in sub_command.aliases:
-                            if alias in list(sub_commands.keys()):
-                                sub_commands_copy.pop(alias, None)
-
-                    field_value += f"**{cmd.name.title()}** Group [{ '|'.join(list(cmd.aliases)) }]\n"
-                    for sub_command in sub_commands_copy.values():
-                        field_value += f"**{constants.Bot.prefix}{cmd.name} {sub_command.name}** [{' | '.join(list(sub_command.aliases))}]\n"
+                if isinstance(cmd, commands.Group):
+                    for sub_cmd in await self.filter_commands(cmd.commands, sort=True):
+                        field_value += f"**{constants.Bot.prefix}{cmd.name} {sub_cmd.name}** [{' | '.join(list(sub_cmd.aliases))}]\n"
                 else:
                     field_value += f"**{constants.Bot.prefix}{cmd.name}** [{' | '.join(list(cmd.aliases))}]\n"
 
