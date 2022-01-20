@@ -14,6 +14,15 @@ class TyrantHelp(commands.HelpCommand):
 
         return f"({aliases_str})" if add_parenthesis else aliases_str
 
+    def get_command_signature(self, command, add_aliases: bool = True):
+        """Return custom command signature."""
+        aliases_str = self.fmt_command_aliases(command, add_parenthesis=True) if add_aliases else ""
+
+        if isinstance(command.parent, commands.Group):
+            return f"{constants.Bot.prefix}{command.parent.name} {command.name} {command.signature.replace('[', '<').replace(']', '>')} {aliases_str}"
+
+        return f"{constants.Bot.prefix}{command.name} {command.signature.replace('[', '<').replace(']', '>')} {aliases_str}"
+
     async def send_bot_help(self, mapping):
         """Tyrant's help menu command."""
         bot = self.context.bot
