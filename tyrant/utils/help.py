@@ -31,20 +31,30 @@ class TyrantHelp(commands.HelpCommand):
             description="Tyrant help list.",
             color=constants.Color.yellow,
         )
- 
+
         for cog_name in bot.cogs:
             cog = bot.cogs[cog_name]
-            field_value = ""
+            cog_commands = await self.filter_commands(cog.get_commands(), sort=True)
 
-            for cmd in await self.filter_commands(cog.get_commands(), sort=True):
+            field_value = (
+                cog.description
+                if cog and (cog.description and (len(cog.description) <= 80))
+                else ""
+            )
+            cmd_list = "```\n"
+
+            for cmd in cog_commands:
                 if isinstance(cmd, commands.Group):
                     for sub_cmd in await self.filter_commands(cmd.commands, sort=True):
-                        field_value += f"**{constants.Bot.prefix}{cmd.name} {sub_cmd.name}** [{' | '.join(list(sub_cmd.aliases))}]\n"
+                        cmd_list += f"\n{self.get_command_signature(sub_cmd)}"
                 else:
-                    field_value += f"**{constants.Bot.prefix}{cmd.name}** [{' | '.join(list(cmd.aliases))}]\n"
+                    cmd_list += f"\n{self.get_command_signature(cmd)}"
 
-            if field_value != "":
-                help_embed.add_field(name=cog_name, value=field_value, inline=False)
+            if len(cog_commands) != 0:
+                cmd_list += "\n```"
+                help_embed.add_field(
+                    name=cog_name, value=f"{field_value}{cmd_list}", inline=False
+                )
 
         await self.get_destination().send(embed=help_embed)
 
