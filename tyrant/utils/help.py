@@ -60,11 +60,10 @@ class TyrantHelp(commands.HelpCommand):
 
     async def send_command_help(self, command: commands.Command):
         """Post help for specified command."""
+        help_str = command.help if command.description == "" else command.description
         help_embed = Embed(
-            title=f"{constants.Bot.prefix}{command.name} [{' | '.join(list(command.aliases))}]",
-            description=(
-                command.help if command.description == "" else command.description
-            ),
+            title=f"{command.name.title()} {self.fmt_command_aliases(command, add_parenthesis=True)}",
+            description=f"{help_str}\n```\n{self.get_command_signature(command, add_aliases=False)}\n```",
             color=constants.Color.yellow,
         )
 
