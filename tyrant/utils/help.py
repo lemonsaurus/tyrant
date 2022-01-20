@@ -69,24 +69,28 @@ class TyrantHelp(commands.HelpCommand):
 
         await self.get_destination().send(embed=help_embed)
 
-    async def send_group_help(self, group:commands.Group):
+    async def send_group_help(self, group: commands.Group):
         """Post help for command groups."""
-        subcommands = group.commands
-        if len(subcommands) == 0:
+
+        group_commands = await self.filter_commands(group.commands, sort=True)
+
+        if len(group_commands) == 0:
             await self.send_command_help(group)
             return
 
-        commands_ = await self.filter_commands(subcommands, sort=True)
-        help_embed = Embed(
-            title=f"**{group.name}** Help",
-            color=constants.Color.yellow
-        )
-        message = ""
+        help_embed = Embed(title=f"{group.name.title()} {self.fmt_command_aliases(group, add_parenthesis=True)}", color=constants.Color.yellow)
 
-        for command in commands_:
-            message += f"**{constants.Bot.prefix}{group.name} {command.name}** [{' | '.join(list(command.aliases))}]\n"
+        msg = (group.help if group.description == "" else group.description)
+        msg = msg if len(msg) <= 80 else ''
 
-        help_embed.description = message 
+        for command in group_commands:
+            description = (
+                command.help if command.description == "" else command.description
+            ) + "\n"
+            cmd = f"```\n{self.get_command_signature(command)}\n```"
+
+            help_embed.add_field(name=command.name.title(), value=f"{description if len(description) <= 80 else ''}{cmd}", inline=False)
+
         await self.get_destination().send(embed=help_embed)
 
     async def send_error_message(self, error):
