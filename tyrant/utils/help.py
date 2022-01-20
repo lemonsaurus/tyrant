@@ -8,6 +8,12 @@ from tyrant import constants
 class TyrantHelp(commands.HelpCommand):
     """Help command for tyrant."""
 
+    def fmt_command_aliases(self, command: commands.Command, add_parenthesis:bool=False):
+        """Return a formatted string displaying all the aliases of a command."""
+        aliases_str = " | ".join(list(command.aliases))
+
+        return f"({aliases_str})" if add_parenthesis else aliases_str
+
     async def send_bot_help(self, mapping):
         """Tyrant's help menu command."""
         bot = self.context.bot
