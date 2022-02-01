@@ -60,10 +60,17 @@ class TyrantHelp(commands.HelpCommand):
                     command_list += f"\n{self.get_command_signature(command)}"
 
             if len(cog_commands) != 0:
-                cmd_list += "\n```"
+                command_list += "\n```"
+                help_embed.add_field(
+                    name=cog_name,
+                    value=f"{cog_description}{command_list}",
+                    inline=False,
+                )
             else: # if there are no available commands
                 help_embed.add_field(
-                    name=cog_name, value=f"{field_value}{cmd_list}", inline=False
+                    name=cog_name,
+                    value=f"{cog_description}\n```\nNo available commands.\n```",
+                    inline=False,
                 )
 
         await self.get_destination().send(embed=help_embed)
@@ -81,25 +88,27 @@ class TyrantHelp(commands.HelpCommand):
 
     async def send_group_help(self, group: commands.Group):
         """Post help for command groups."""
-
-        group_commands = await self.filter_commands(group.commands, sort=True)
+        group_commands = await self.filter_commands(
+            group.commands, sort=True
+        )  # filtering commands
 
         if len(group_commands) == 0:
             await self.send_command_help(group)
             return
 
-        help_embed = Embed(title=f"{group.name.title()} {self.fmt_command_aliases(group, add_parenthesis=True)}", color=constants.Color.yellow)
-
-        msg = (group.help if group.description == "" else group.description)
-        msg = msg if len(msg) <= 80 else ''
+        help_embed = Embed(
+            title=f"{group.name.title()} {self.format_aliases(group, add_parenthesis=True)}",
+            color=constants.Color.yellow,
+        )
 
         for command in group_commands:
             description = (
                 command.help if command.description == "" else command.description
             ) + "\n"  # setting description to help attr if description is empty
+            description = (
+                description if len(description) <= 80 else ""
             )  # only allowing descriptions less than or equal to 80 characters
 
-            help_embed.add_field(name=command.name.title(), value=f"{description if len(description) <= 80 else ''}{cmd}", inline=False)
             command_block = f"```\n{self.get_command_signature(command)}\n```"  # setting command help code block
 
             help_embed.add_field(
