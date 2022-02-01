@@ -20,10 +20,12 @@ class TyrantHelp(commands.HelpCommand):
             self.format_aliases(command, add_parenthesis=True) if add_aliases else ""
         )
 
-        if isinstance(command.parent, commands.Group):
-            return f"{constants.Bot.prefix}{command.parent.name} {command.name} {command.signature.replace('[', '<').replace(']', '>')} {aliases_str}"
+        signature = command.signature.replace("[", "<").replace("]", ">")
 
-        return f"{constants.Bot.prefix}{command.name} {command.signature.replace('[', '<').replace(']', '>')} {aliases_str}"
+        if isinstance(command.parent, commands.Group):
+            return f"{constants.Bot.prefix}{command.parent.name} {command.name} {signature} {aliases}"
+
+        return f"{constants.Bot.prefix}{command.name} {signature} {aliases}"
 
     async def send_bot_help(self, mapping):
         """Tyrant's help menu command."""
