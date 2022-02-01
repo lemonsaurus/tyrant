@@ -28,7 +28,7 @@ class TyrantHelp(commands.HelpCommand):
         return f"{constants.Bot.prefix}{command.name} {signature} {aliases}"
 
     async def send_bot_help(self, mapping):
-        """Tyrant's help menu command."""
+        """Post Tyrant's help menu."""
         bot = self.context.bot
         help_embed = Embed(
             title="Help",
