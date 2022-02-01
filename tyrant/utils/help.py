@@ -32,7 +32,7 @@ class TyrantHelp(commands.HelpCommand):
         bot = self.context.bot
         help_embed = Embed(
             title="Help",
-            description="Tyrant help list.",
+            description="Available commands",
             color=constants.Color.yellow,
         )
 
