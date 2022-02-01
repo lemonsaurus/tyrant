@@ -37,13 +37,17 @@ class TyrantHelp(commands.HelpCommand):
         )
 
         for cog_name in bot.cogs:
+        for cog_name in bot.cogs:  # looping through bot cogs
             cog = bot.cogs[cog_name]
             cog_commands = await self.filter_commands(cog.get_commands(), sort=True)
+            )  # filtering just the commands available to the user
 
             field_value = (
                 cog.description
                 if cog and (cog.description and (len(cog.description) <= 80))
                 else ""
+            )  # only allowing descriptions lesser than 80 characters
+                "```\n"  # initializing command_list code block with triple backticks
             )
             cmd_list = "```\n"
 
@@ -51,11 +55,13 @@ class TyrantHelp(commands.HelpCommand):
                 if isinstance(cmd, commands.Group):
                     for sub_cmd in await self.filter_commands(cmd.commands, sort=True):
                         cmd_list += f"\n{self.get_command_signature(sub_cmd)}"
+                if isinstance(command, commands.Group):  # checking if the command is a command group
                 else:
                     cmd_list += f"\n{self.get_command_signature(cmd)}"
 
             if len(cog_commands) != 0:
                 cmd_list += "\n```"
+            else: # if there are no available commands
                 help_embed.add_field(
                     name=cog_name, value=f"{field_value}{cmd_list}", inline=False
                 )
@@ -92,8 +98,11 @@ class TyrantHelp(commands.HelpCommand):
                 command.help if command.description == "" else command.description
             ) + "\n"
             cmd = f"```\n{self.get_command_signature(command)}\n```"
+            ) + "\n"  # setting description to help attr if description is empty
+            )  # only allowing descriptions less than or equal to 80 characters
 
             help_embed.add_field(name=command.name.title(), value=f"{description if len(description) <= 80 else ''}{cmd}", inline=False)
+            command_block = f"```\n{self.get_command_signature(command)}\n```"  # setting command help code block
 
         await self.get_destination().send(embed=help_embed)
 
