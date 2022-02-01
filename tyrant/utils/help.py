@@ -10,13 +10,15 @@ class TyrantHelp(commands.HelpCommand):
 
     def format_aliases(self, command: commands.Command, add_parenthesis: bool = False):
         """Return a formatted string displaying all the aliases of a command."""
-        aliases_str = " | ".join(list(command.aliases))
+        aliases = " | ".join(command.aliases)
 
-        return f"({aliases_str})" if add_parenthesis else aliases_str
+        return f"({aliases})" if add_parenthesis else aliases
 
     def get_command_signature(self, command, add_aliases: bool = True):
         """Return custom command signature."""
-        aliases_str = self.fmt_command_aliases(command, add_parenthesis=True) if add_aliases else ""
+        aliases = (
+            self.format_aliases(command, add_parenthesis=True) if add_aliases else ""
+        )
 
         if isinstance(command.parent, commands.Group):
             return f"{constants.Bot.prefix}{command.parent.name} {command.name} {command.signature.replace('[', '<').replace(']', '>')} {aliases_str}"
@@ -60,10 +62,10 @@ class TyrantHelp(commands.HelpCommand):
 
     async def send_command_help(self, command: commands.Command):
         """Post help for specified command."""
-        help_str = command.help if command.description == "" else command.description
+        help_text = command.help if command.description == "" else command.description
         help_embed = Embed(
-            title=f"{command.name.title()} {self.fmt_command_aliases(command, add_parenthesis=True)}",
-            description=f"{help_str}\n```\n{self.get_command_signature(command, add_aliases=False)}\n```",
+            title=f"{command.name.title()} {self.format_aliases(command, add_parenthesis=True)}",
+            description=f"{help_text}\n```\n{self.get_command_signature(command, add_aliases=False)}\n```",
             color=constants.Color.yellow,
         )
 
