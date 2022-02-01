@@ -8,7 +8,7 @@ from tyrant import constants
 class TyrantHelp(commands.HelpCommand):
     """Help command for tyrant."""
 
-    def fmt_command_aliases(self, command: commands.Command, add_parenthesis:bool=False):
+    def format_aliases(self, command: commands.Command, add_parenthesis: bool = False):
         """Return a formatted string displaying all the aliases of a command."""
         aliases_str = " | ".join(list(command.aliases))
 
