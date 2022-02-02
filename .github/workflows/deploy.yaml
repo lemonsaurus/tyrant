@@ -45,7 +45,7 @@ jobs:
 
       # Deploy via Hoplite
       - name: Send a webhook to Hoplite
-        uses: distributhor/workflow-webhook@v1.0.2
+        uses: distributhor/workflow-webhook@v2.0.2
         env:
           webhook_auth: ${{ secrets.webhook_auth }}
           webhook_secret: ${{ secrets.webhook_secret }}
