@@ -198,6 +198,9 @@ class Bot:
     debug: bool = os.environ.get("LEMONSAURUS_DEBUG", "false").lower() == "true"
     git_sha: str = os.environ.get("GIT_SHA")
 
+class Color:
+    """Constant containing color values."""
+    yellow : int = 0xf6f65d
 
 class Channels:
     """Channel IDs that are relevant for this community."""

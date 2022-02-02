@@ -4,10 +4,12 @@ from typing import Optional
 import discord
 from aiohttp import AsyncResolver, ClientSession, TCPConnector
 from discord.ext import commands
+
 from loguru import logger
 
 from tyrant import constants
 from tyrant.utils import github
+from tyrant.utils.help import TyrantHelp
 
 
 class Tyrant(commands.Bot):
@@ -16,7 +18,11 @@ class Tyrant(commands.Bot):
     name = "Tyrant"
 
     def __init__(self, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
+        super().__init__(
+            *args,
+            **kwargs,
+            help_command=TyrantHelp(),
+        )
 
         self.http_session: Optional[ClientSession] = None
         self._connector: Optional[TCPConnector] = None
