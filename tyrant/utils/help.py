@@ -54,7 +54,7 @@ class TyrantHelp(commands.HelpCommand):
 
             for command in cog_commands:
                 if isinstance(command, commands.Group):  # checking if the command is a command group
-                    for sub_command in await self.filter_commands(commands.commands, sort=True):
+                    for sub_command in await self.filter_commands(command.commands, sort=True):
                         command_list += f"\n{self.get_command_signature(sub_command)}"
                 else:
                     command_list += f"\n{self.get_command_signature(command)}"
