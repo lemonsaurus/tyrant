@@ -1,7 +1,7 @@
 import random
 
-from discord.ext import commands
-from discord.ext.commands import Bot, Cog, Context
+from disnake.ext import commands
+from disnake.ext.commands import Bot, Cog, Context
 
 from tyrant import constants
 

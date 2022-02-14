@@ -1,5 +1,5 @@
-import discord
-from discord.ext.commands import when_mentioned_or
+import disnake
+from disnake.ext.commands import when_mentioned_or
 from loguru import logger
 
 from tyrant import bot, constants
@@ -8,10 +8,10 @@ from tyrant.utils.exceptions import MissingToken
 # Initialize the bot
 bot = bot.Tyrant(
     command_prefix=when_mentioned_or(constants.Bot.prefix),  # Invoked commands must have this prefix
-    activity=discord.Game(name="with fire"),
+    activity=disnake.Game(name="with fire"),
     case_insensitive=True,
     max_messages=10_000,
-    allowed_mentions=discord.AllowedMentions(everyone=False),
+    allowed_mentions=disnake.AllowedMentions(everyone=False),
 )
 
 # Load the extensions we want
