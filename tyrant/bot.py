@@ -1,9 +1,9 @@
 import socket
 from typing import Optional
 
-import discord
+import disnake
 from aiohttp import AsyncResolver, ClientSession, TCPConnector
-from discord.ext import commands
+from disnake.ext import commands
 
 from loguru import logger
 
@@ -81,11 +81,11 @@ class Tyrant(commands.Bot):
         """Send a message to the logs channel."""
         try:
             webhook = await self.fetch_webhook(constants.Webhooks.logs)
-        except discord.HTTPException as e:
+        except disnake.HTTPException as e:
             logger.error("Failed to fetch webhook to send connection log: status {}", e.status)
         else:
             image_url = await github.get_random_connection_image(self.http_session)
-            embed = discord.Embed(colour=discord.Colour.dark_magenta(),)
+            embed = disnake.Embed(colour=disnake.Colour.dark_magenta(),)
             embed.set_image(url=image_url)
             embed.set_footer(text=f"Version: {constants.Bot.git_sha}")
             await webhook.send(

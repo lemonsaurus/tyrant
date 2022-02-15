@@ -30,7 +30,7 @@ class InterceptHandler(logging.Handler):
 logging.basicConfig(handlers=[InterceptHandler()], level=0)
 
 # Silence noisy libs
-logging.getLogger("discord").setLevel(logging.ERROR)
+logging.getLogger("disnake").setLevel(logging.ERROR)
 logging.getLogger("asyncio").setLevel(logging.ERROR)
 
 # Remove the default stderr sink, so we can add our own with custom formatting.

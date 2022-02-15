@@ -1,6 +1,6 @@
-from discord import Embed
-from discord.ext import commands
-from discord.ext.commands import Bot
+from disnake import Embed
+from disnake.ext import commands
+from disnake.ext.commands import Bot
 
 from tyrant import constants
 
