@@ -249,3 +249,6 @@ class Images:
     """Image paths relevant to this bot."""
     teamcount_base = Path('images/teamcount_base.png')
 
+class Fonts:
+    """Font paths relevant to this bot."""
+    carton_six = Path('fonts/Carton_Six.ttf')
