@@ -197,6 +197,7 @@ class Bot:
     prefix: str = "."
     debug: bool = os.environ.get("LEMONSAURUS_DEBUG", "false").lower() == "true"
     git_sha: str = os.environ.get("GIT_SHA")
+    guild: int = 445997941258190848
 
 class Color:
     """Constant containing color values."""
