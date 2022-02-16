@@ -1,5 +1,6 @@
 import os
 from typing import Optional
+from pathlib import Path
 
 POSITIVE_VERBS = ["pronounces", "decrees", "proclaims", "ordains"]
 NEGATIVE_VERBS = ["commands", "orders", "demands", "dictates"]
@@ -243,3 +244,8 @@ class Users:
 class Webhooks:
     """Webhook IDs used by this bot."""
     logs: int = os.environ.get("LEMONSAURUS_LOG_WEBHOOK")
+
+class Images:
+    """Image paths relevant to this bot."""
+    teamcount_base = Path('images/teamcount_base.png')
+
