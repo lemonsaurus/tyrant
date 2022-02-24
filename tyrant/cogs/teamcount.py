@@ -92,7 +92,7 @@ class TeamCount(Cog):
 
         # creating shadow
         draw_shadow.text(
-            (self.width / 2 - 57, self.height / 2 - 37),
+            (self.width / 2 - 17, self.height / 3 + 3),
             "VS",
             fill=(0, 0, 0, 135),
             font=cartonix_font_small,
@@ -116,7 +116,7 @@ class TeamCount(Cog):
 
         # drawing member count text over shadows
         draw_base.text(
-            (self.width / 2 - 60, self.height / 2 - 40),
+            (self.width / 2 - 20, self.height / 3),
             "VS",
             fill=(255, 255, 255, 255),
             font=cartonix_font_small,
@@ -142,34 +142,37 @@ class TeamCount(Cog):
     def _get_text_coordinates(self, team: str, member_count: str):
         """Get Coordinates for member_count text according to its length."""
 
-        coordinates = [[0, 0], [0, 0]]
+        coordinates = [
+            [0, 0],  # coordinates for text shadow
+            [0, 0],  # coordinates for main text
+        ]
 
         # The coordinates used below are tested values.
-        if team == "vegetables":
-            if len(member_count) == 1:
-                coordinates[0] = [self.width / 3 + 18, 8]
-                coordinates[1] = [self.width / 3 + 15, 5]
-
-            if len(member_count) == 2:
-                coordinates[0] = [self.width / 3 - 57, 8]
-                coordinates[1] = [self.width / 3 - 60, 5]
-
-            if len(member_count) == 3:
-                coordinates[0] = [self.width / 3 - 77, 8]
-                coordinates[1] = [self.width / 3 - 80, 5]
-
         if team == "fruits":
             if len(member_count) == 1:
-                coordinates[0] = [self.width / 2 + 28, 8]
-                coordinates[1] = [self.width / 2 + 25, 5]
+                coordinates[0] = [self.width / 3 + 54, 3]
+                coordinates[1] = [self.width / 3 + 50, 0]
 
             if len(member_count) == 2:
-                coordinates[0] = [self.width / 2 + 26, 6]
-                coordinates[1] = [self.width / 2 + 23, 3]
+                coordinates[0] = [self.width / 3 - 10, 3]
+                coordinates[1] = [self.width / 3 - 14, 0]
 
             if len(member_count) == 3:
-                coordinates[0] = [self.width / 2 + 23, 6]
-                coordinates[1] = [self.width / 2 + 20, 3]
+                coordinates[0] = [self.width / 3 - 67, 3]
+                coordinates[1] = [self.width / 3 - 70, 0]
+
+        if team == "vegetables":
+            if len(member_count) == 1:
+                coordinates[0] = [self.width / 2 + 64, 3]
+                coordinates[1] = [self.width / 2 + 60, 0]
+
+            if len(member_count) == 2:
+                coordinates[0] = [self.width / 2 + 64, 3]
+                coordinates[1] = [self.width / 2 + 60, 0]
+
+            if len(member_count) == 3:
+                coordinates[0] = [self.width / 2 + 58, 3]
+                coordinates[1] = [self.width / 2 + 54, 0]
 
         return coordinates
 
