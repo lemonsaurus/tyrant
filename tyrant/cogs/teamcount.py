@@ -1,5 +1,4 @@
 from io import BytesIO
-from typing import Union
 
 from disnake import File, Embed
 from disnake.ext import commands
