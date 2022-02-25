@@ -10,3 +10,5 @@ services:
       - .env
     volumes:
       - ./logs:/tyrant/logs
+      - ./images:/tyrant/images:ro
+      - ./fonts:/tyrant/fonts:ro

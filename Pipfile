@@ -9,6 +9,7 @@ verify_ssl = true
 disnake = "~=2.4"
 aiodns = "~=3.0"
 loguru = "~=0.5"
+pillow = "*"
 
 [requires]
 python_version = "3.9"
