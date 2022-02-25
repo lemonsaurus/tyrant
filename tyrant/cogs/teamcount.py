@@ -48,7 +48,7 @@ class TeamCount(Cog):
 
         return (team_vegetable_member_count, team_fruit_member_count)
 
-    async def _create_banner_embed(self, ctx: Context, image):
+    async def _create_banner_embed(self, ctx: Context, image: BytesIO):
         """Create an embed with the banner image."""
         embed = Embed(color=constants.Color.yellow)
         embed.set_image(file=File(fp=image, filename="teamcount.png"))
