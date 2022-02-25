@@ -61,9 +61,7 @@ class TeamCount(Cog):
 
     async def _create_banner(self, team_vegetable_count: int, team_fruit_count: int):
         """Create banner with the count of members in each team."""
-        base_image = Image.open(Images.teamcount_base.resolve().__str__()).convert(
-            "RGBA"
-        )  # base image object
+        base_image = Image.open(Images.teamcount_base).convert("RGBA")  # base image object
 
         shadow = Image.new(
             "RGBA", base_image.size
