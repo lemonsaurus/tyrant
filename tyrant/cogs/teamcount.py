@@ -73,10 +73,10 @@ class TeamCount(Cog):
         self.height = base_image.height
 
         cartonix_font_small = ImageFont.truetype(
-            font=Fonts.carton_six.resolve().__str__(), size=70
+            font=str(Fonts.carton_six.resolve()), size=70
         )
         cartonix_font_large = ImageFont.truetype(
-            font=Fonts.carton_six.resolve().__str__(), size=150
+            font=str(Fonts.carton_six.resolve()), size=150
         )
 
         draw_base = ImageDraw.Draw(base_image)
