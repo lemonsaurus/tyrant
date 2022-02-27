@@ -6,15 +6,15 @@ from loguru import logger
 from tyrant import constants
 
 
-class PickTeam(Cog):
-    """Command letting the Tyrant pick a team for the user."""
+class RandomTeam(Cog):
+    """Command letting the Tyrant pick a random team for the user."""
 
     def __init__(self, bot: Bot):
         """Initialize this cog with the Bot instance."""
         self.bot = bot
 
-    @commands.command(aliases=("team",))
-    async def pick(self, ctx: Context):
+    @commands.command(aliases=("enlist", "enroll"))
+    async def random_team(self, ctx: Context):
         """Let the Tyrant pick a fruit or vegetable for you."""
         if ctx.guild is None:
             return await ctx.send('This command can only be used in the server.')
@@ -50,4 +50,4 @@ class PickTeam(Cog):
 
 def setup(bot: Bot) -> None:
     """Called by discord.py to load the extension which will add the above cog."""
-    bot.add_cog(PickTeam(bot))
+    bot.add_cog(RandomTeam(bot))
