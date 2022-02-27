@@ -1,6 +1,6 @@
 from io import BytesIO
 
-from disnake import File, Embed
+from disnake import File
 from disnake.ext import commands
 from disnake.ext.commands import Bot, Cog, Context
 
@@ -31,9 +31,7 @@ class TeamCount(Cog):
             )  # converting PIL.Image object to binary
             image_binary.seek(0)
 
-            embed = await self._create_banner_embed(ctx=ctx, image=image_binary)
-
-            await ctx.send(embed=embed)
+            await ctx.send(file=File(fp=image_binary, filename="teamcount.png"))
 
     async def get_member_count(self):
         """Return the current member count from each teams."""
@@ -47,17 +45,6 @@ class TeamCount(Cog):
         )
 
         return (team_vegetable_member_count, team_fruit_member_count)
-
-    async def _create_banner_embed(self, ctx: Context, image: BytesIO):
-        """Create an embed with the banner image."""
-        embed = Embed(color=constants.Color.yellow)
-        embed.set_image(file=File(fp=image, filename="teamcount.png"))
-        embed.set_footer(
-            text=f"Requested by {ctx.author.display_name}",
-            icon_url=ctx.author.display_avatar,
-        )
-
-        return embed
 
     async def _create_banner(self, team_vegetable_count: int, team_fruit_count: int):
         """Create banner with the count of members in each team."""
