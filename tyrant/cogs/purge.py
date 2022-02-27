@@ -2,9 +2,9 @@ import random
 import re
 from typing import Optional
 
-from discord import Colour, Embed, Message, TextChannel, User
-from discord.ext import commands
-from discord.ext.commands import Bot, Cog, Context, group
+from disnake import Colour, Embed, Message, TextChannel, User
+from disnake.ext import commands
+from disnake.ext.commands import Bot, Cog, Context, group
 
 from tyrant.constants import NEGATIVE_REPLIES, Roles
 from tyrant.decorators import with_role

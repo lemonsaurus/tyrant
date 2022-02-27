@@ -1,7 +1,7 @@
 from typing import Callable
 
-from discord.ext import commands
-from discord.ext.commands import Context
+from disnake.ext import commands
+from disnake.ext.commands import Context
 from loguru import logger
 
 

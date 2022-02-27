@@ -1,5 +1,10 @@
 import os
 from typing import Optional
+from pathlib import Path
+
+POSITIVE_VERBS = ["pronounces", "decrees", "proclaims", "ordains"]
+NEGATIVE_VERBS = ["commands", "orders", "demands", "dictates"]
+UNCERTAIN_VERBS = ["mumbles", "suggests", "mutters", "shrugs, and says"]
 
 NEGATIVE_REPLIES = [
     "Noooooo!!",
@@ -39,6 +44,23 @@ POSITIVE_REPLIES = [
     "Of course!",
     "Aye aye, cap'n!",
     "I'll allow it.",
+]
+
+UNCERTAIN_REPLIES = [
+    "I have no idea.",
+    "How would I know?",
+    "Ask me tomorrow.",
+    "Ask me when you're older.",
+    "Maybe?",
+    "It's hard to say for sure.",
+    "Who knows?",
+    "Nyesno.",
+    "Sure! Wait, maybe not.",
+    "You never know!",
+    "I know the answer, but I won't tell you.",
+    "Frudgeknuckle.",
+    "Rorchestershire.",
+    "Could go either way!",
 ]
 
 ERROR_REPLIES = [
@@ -176,7 +198,11 @@ class Bot:
     prefix: str = "."
     debug: bool = os.environ.get("LEMONSAURUS_DEBUG", "false").lower() == "true"
     git_sha: str = os.environ.get("GIT_SHA")
+    guild: int = 445997941258190848
 
+class Color:
+    """Constant containing color values."""
+    yellow : int = 0xf6f65d
 
 class Channels:
     """Channel IDs that are relevant for this community."""
@@ -218,3 +244,11 @@ class Users:
 class Webhooks:
     """Webhook IDs used by this bot."""
     logs: int = os.environ.get("LEMONSAURUS_LOG_WEBHOOK")
+
+class Images:
+    """Image paths relevant to this bot."""
+    teamcount_base = Path('images/teamcount_base.png')
+
+class Fonts:
+    """Font paths relevant to this bot."""
+    carton_six = Path('fonts/Carton_Six.ttf')

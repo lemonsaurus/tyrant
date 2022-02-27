@@ -1,6 +1,6 @@
 import asyncio
 
-from discord.ext.commands import Bot, Cog
+from disnake.ext.commands import Bot, Cog
 
 from tyrant import constants
 
