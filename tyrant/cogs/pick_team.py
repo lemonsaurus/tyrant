@@ -40,7 +40,7 @@ class PickTeam(Cog):
             logger.warning('Could not assign role because FruitVsVegetables cog is unloaded')
 
         await ctx.send(
-            f"The Tyrant decided that your role will be: <@&{choice}>",
+            f"**The Tyrant decided that your role will be**... <@&{choice}>",
             allowed_mentions=AllowedMentions.none()
         )
 
