@@ -16,6 +16,9 @@ class PickTeam(Cog):
     @commands.command(aliases=("team",))
     async def pick(self, ctx: Context):
         """Let the Tyrant pick a fruit or vegetable for you."""
+        if ctx.guild is None:
+            return await ctx.send('This command can only be used in the server.')
+
         # We want a sense of randomness from this algorithm so that the chosen
         # roles are evenly spread out, at the same time we want the command to
         # choose the same roles even if invoked twice.
