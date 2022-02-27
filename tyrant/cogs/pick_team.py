@@ -1,6 +1,6 @@
-from discord import AllowedMentions
-from discord.ext import commands
-from discord.ext.commands import Bot, Cog, Context
+from disnake import AllowedMentions
+from disnake.ext import commands
+from disnake.ext.commands import Bot, Cog, Context
 from loguru import logger
 
 from tyrant import constants
