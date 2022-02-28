@@ -66,12 +66,6 @@ class TyrantHelp(commands.HelpCommand):
                     value=f"{cog_description}{command_list}",
                     inline=False,
                 )
-            else: # if there are no available commands
-                help_embed.add_field(
-                    name=cog_name,
-                    value=f"{cog_description}\n```\nNo available commands.\n```",
-                    inline=False,
-                )
 
         await self.get_destination().send(embed=help_embed)
 
