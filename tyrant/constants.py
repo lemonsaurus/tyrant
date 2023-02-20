@@ -200,10 +200,10 @@ def _get_as_int(key:str, default=None):
 class Bot:
     """Constants relating to the bot itself."""
     token: Optional[str] = os.environ.get("LEMONSAURUS_DISCORD_TOKEN")
-    prefix: str = os.environ.get("PREFIX", ".")
+    prefix: str = os.environ.get("LEMONSAURUS_PREFIX", ".")
     debug: bool = os.environ.get("LEMONSAURUS_DEBUG", "false").lower() == "true"
     git_sha: str = os.environ.get("GIT_SHA", "development")
-    guild: int = int(os.environ.get("GUILD_ID", 445997941258190848))
+    guild: int = int(os.environ.get("LEMONSAURUS_GUILD_ID", 445997941258190848))
 
 class Color:
     """Constant containing color values."""
