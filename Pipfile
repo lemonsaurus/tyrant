@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-disnake = "~=2.4"
+disnake = "~=2.8"
 aiodns = "~=3.0"
 loguru = "~=0.5"
 pillow = "*"
