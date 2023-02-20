@@ -191,14 +191,19 @@ EMOJI_TO_TEAM = {
     "dragonfruit": 883080439231840259,
 }
 
+def _get_as_int(key:str, default=None):
+    try:
+        return int(os.environ[key])
+    except (KeyError, ValueError):
+        return default
 
 class Bot:
     """Constants relating to the bot itself."""
     token: Optional[str] = os.environ.get("LEMONSAURUS_DISCORD_TOKEN")
-    prefix: str = "."
+    prefix: str = os.environ.get("PREFIX", ".")
     debug: bool = os.environ.get("LEMONSAURUS_DEBUG", "false").lower() == "true"
-    git_sha: str = os.environ.get("GIT_SHA")
-    guild: int = 445997941258190848
+    git_sha: str = os.environ.get("GIT_SHA", "development")
+    guild: int = int(os.environ.get("GUILD_ID", 445997941258190848))
 
 class Color:
     """Constant containing color values."""
@@ -232,8 +237,8 @@ class Roles:
     carrot: int = 883077759985930290
     chili_pepper: int = 883077551927484476
     pomegranate: int = 802850922375282698
-    team_vegetables: int = 883078871770071051
-    team_fruit: int = 883080439231840259
+    team_vegetables: int = _get_as_int("LEMONSAURUS_ROLE_VEGETABLES") or 883078871770071051
+    team_fruit: int = _get_as_int("LEMONSAURUS_ROLE_FRUITS") or 883080439231840259
 
 
 class Users:
@@ -243,7 +248,7 @@ class Users:
 
 class Webhooks:
     """Webhook IDs used by this bot."""
-    logs: int = os.environ.get("LEMONSAURUS_LOG_WEBHOOK")
+    logs: Optional[int] = _get_as_int("LEMONSAURUS_LOG_WEBHOOK")
 
 class Images:
     """Image paths relevant to this bot."""
