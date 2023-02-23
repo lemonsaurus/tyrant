@@ -79,6 +79,10 @@ class Tyrant(commands.Bot):
 
     async def send_connection_log(self) -> None:
         """Send a message to the logs channel."""
+        # stop early if the webhook is not configured
+        if not constants.Webhooks.logs:
+            logger.info("Connection log webhook is not configured. Unable to send message.")
+            return
         try:
             webhook = await self.fetch_webhook(constants.Webhooks.logs)
         except disnake.HTTPException as e:
