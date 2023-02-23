@@ -8,6 +8,7 @@ from tyrant.utils.exceptions import MissingToken
 # Set the required Intents to True
 intents = disnake.Intents.default()
 intents.members = True
+intents.message_content = True
 
 # Initialize the bot
 bot = bot.Tyrant(
