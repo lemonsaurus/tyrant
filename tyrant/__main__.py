@@ -20,11 +20,12 @@ bot = bot.Tyrant(
     intents=intents,
 )
 
-# Load the extensions we want
+# Load the extensions we want (alphabetical)
 bot.load_extension("tyrant.cogs.ask_tyrant")
-bot.load_extension("tyrant.cogs.lemon_facts")
 bot.load_extension("tyrant.cogs.fruit_vs_vegetables")
+bot.load_extension("tyrant.cogs.lemon_facts")
 bot.load_extension("tyrant.cogs.purge")
+bot.load_extension("tyrant.cogs.random_team")
 bot.load_extension("tyrant.cogs.teamcount")
 
 # Validate the token
